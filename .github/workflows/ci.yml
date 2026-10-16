@@ -28,3 +28,11 @@ jobs:
 
       - name: Bulid Docker image
         run: docker build -t fastapi-practice .
+
+      - name: Run Docker Container
+        run: docker run -d --name fastapi-app -p 8000:8000 fastapi-practice
+
+      - name: Check health endpoint
+        run: |
+          sleep 3
+          curl --fail http://127.0.0.1:8000/health
